@@ -18,11 +18,12 @@ ping balls
 ```
 
 like the famous dude(tm).
-__didnt work__
+__didnt work rip
+
 ___
 
 
-- [x] fail
-- [ ] reschedule
-- [ ] try again
+[x] fail
+[ ] reschedule
+[ ] try again
 
