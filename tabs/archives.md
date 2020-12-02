@@ -1,8 +1,6 @@
 ---
 title: Archives
-icon: fas fa-archive
-order: 3
-
+type: archives
 # The Archives of posts.
 # v2.0
 # https://github.com/cotes2020/jekyll-theme-chirpy

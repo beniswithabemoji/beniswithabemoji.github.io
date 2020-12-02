@@ -1,7 +1,5 @@
 ---
 title: About
-icon: fas fa-info
-order: 4
 
 # The About page
 # v2.0
@@ -9,6 +7,5 @@ order: 4
 # © 2017-2019 Cotes Chung
 # MIT License
 ---
-
 
 > **Note**: i made this

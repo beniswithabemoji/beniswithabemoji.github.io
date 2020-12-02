@@ -13,10 +13,8 @@ var cacheName = 'chirpy-{{ "now" | date: "%Y%m%d.%H%M" }}';
 
 
 function isExcluded(url) {
-  const regex = /(^http(s)?|^\/)/; /* the regex for CORS url or relative url */
   for (const rule of exclude) {
-    if (!regex.test(url) ||
-      url.indexOf(rule) != -1) {
+    if (url.indexOf(rule) != -1) {
       return true;
     }
   }

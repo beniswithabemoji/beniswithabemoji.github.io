@@ -1,8 +1,6 @@
 ---
 title: Tags
-icon: fas fa-tags
-order: 2
-
+type: tags
 # All the Tags of posts.
 # v2.0
 # https://github.com/cotes2020/jekyll-theme-chirpy
