@@ -1,22 +1,18 @@
 /*
- * Copy current page url to clipboard.
- * v2.1
- * https://github.com/cotes2020/jekyll-theme-chirpy
- * © 2020 Cotes Chung
- * MIT License
- */
-
-function copyLink(url) {
-  if (!url || 0 === url.length) {
-    url = window.location.href;
+Reference: https://bootsnipp.com/snippets/featured/link-to-top-page
+*/
+$(window).scroll(function() {
+  if ($(this).scrollTop() > 50
+      && $("#sidebar-trigger").css("display") === "none") {
+    $("#back-to-top").fadeIn();
+  } else {
+    $("#back-to-top").fadeOut();
   }
-  
-  var $temp = $("<input>");
-  $("body").append($temp);
-  $temp.val(url).select();
-  document.execCommand("copy");
-  $temp.remove();
+});
 
-  alert("Link copied successfully!");
-
-}
+$(function() {
+  $("#back-to-top").click(function() {
+    $("body,html").animate({scrollTop: 0}, 800);
+    return false;
+  });
+});
