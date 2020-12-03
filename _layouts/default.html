@@ -36,12 +36,15 @@ layout: compress
     <div id="main-wrapper">
       <div id="main">
 
-        {% include refactor-content.html content=content %}
+        {% capture _content %}
+          {{ content }}
+        {% endcapture %}
+
+        {% include fixlinenos.html %}
+        {{ _content }}
 
         {% include footer.html %}
-
       </div>
-
       {% include search-results.html %}
 
     </div> <!-- #main-wrapper -->
@@ -51,6 +54,10 @@ layout: compress
     <a id="back-to-top" href="#" class="btn btn-lg btn-box-shadow" role="button">
       <i class="fas fa-angle-up"></i>
     </a>
+
+    {% if jekyll.environment == 'production' %}
+      {% include google-analytics.html %}
+    {% endif %}
 
     {% include search-loader.html %}
 
