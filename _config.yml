@@ -14,7 +14,8 @@ tagline: Benis  # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
  i made this
-
+ 
+ 
 # Replace with the website url, e.g. 'https://username.github.io'
 url: 'https://benisonthe.computer'
 
@@ -40,7 +41,6 @@ social:
     # - https://www.linkedin.com/in/username
 
 google_site_verification: google_meta_tag_verification # change to your verification string
-
 #--------------------------
 
 
