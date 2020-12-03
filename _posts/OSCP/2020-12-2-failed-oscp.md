@@ -24,6 +24,5 @@ ___
 
 
 [x] fail
-[ ] reschedule
-[ ] try again
+
 
