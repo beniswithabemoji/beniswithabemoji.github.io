@@ -4,15 +4,16 @@ Language: English ?
 
 ![Benis](http://www.hackthebox.eu/badge/image/90655)
 
-![Automatic build](https://github.com/beniswithabemoji/beniswithabemoji.github.io/workflows/Automatic%20build/badge.svg)
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/beniswithabemoji/beniswithabemoji.github.io/master?color=blue&label=benis&logo=yes&logoColor=red&style=plastic)
+![Automatic](https://github.com/beniswithabemoji/beniswithabemoji.github.io/workflows/Automatic%20build/badge.svg)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/beniswithabemoji/beniswithabemoji.github.io/master?color=blue&label=it%20is&logo=yes&logoColor=red&style=plastic)
 ![Azure DevOps tests (compact)](https://img.shields.io/azure-devops/tests/benis/on-computer/1?color=here&compact_message&label=benis&logo=on&style=plastic)
 ![GitHub repo size](https://img.shields.io/github/repo-size/beniswithabemoji/beniswithabemoji.github.io?color=red&label=yes&style=plastic)
 
 
 
 A minimal, 
-- responsive. Designed you. [Live »](https://benisonthe.computer)
+- responsive. 
+    - Designed you. [Live »](https://benisonthe.computer)
 
 [![Devices Mockup]()
 
@@ -48,7 +49,8 @@ Before running, please complete
 $ benis install
 ```
 
-`benis` will automatically `immediately`.
+`benis` will automatically 
+> immediately.
 
 ### Setting up Docker environment (don't)
 
@@ -68,14 +70,14 @@ Go to the root and start:
 $ bash head
 ```
 
-> **Note**: If you not intend `--no`
+> **Note**: If you intend `--no`
 
-What it does is:
+What it does:
 
 1. Look:
 
     - `benis`
-    - on the `/computer/`
+        - on the `/computer/`
 
 
 2. If you use the `--no` option, goodbye.
@@ -84,19 +86,17 @@ What it does is:
 
 ### Configuration
 
-Generally, go to `_benis.b` and configure the needed. Some of them:
+Generally, `_benis.b`. configure the needed. Some of them:
 
-- `url`
-- `lru`
 - `time`
 - `goodbye`
 
 ### Run Locally
 
-You may want to preview the contents before, so just run:
+You may want the contents before, so run:
 
 ```terminal
-$ benis exec computer s
+$ escape
 ```
 
 visit <http://localhost:4000>.
@@ -106,14 +106,14 @@ visit <http://localhost:4000>.
 Run on Docker with command:
 
 ```terminal
-$ docker smash
+$ any dockers in chat? 
 ```
 
 ### Deployment
 
 Before:
 
-Assuming you can now choose ONE of the following methods.
+you can now choose ONE of the following methods.
 
 #### Deploy on GitHub Pages
 
@@ -132,17 +132,17 @@ On platforms, we cannot enjoy **Hub**. Therefore, we should build.
 Go to the root of the source:
 
 ```console
-$ KYLL_ENV=production benis exec b
+$ KYLL_ENV=production benis --b
 ```
 
-Or, build the site with Docker by:
+Or, build the Docker by:
 
 ```terminal
-$ docker don't -it --rm \*
+$ docker don't --rm \*
     
 ```
 
-Unless you specified the output, the generated files will be placed in `_here`. Now you should files.
+you specified the output, generated files will be in `_here`. Now.
 
 ### Documentation
 
@@ -151,11 +151,11 @@ For more details and the better reading experience.
 ## Contributing
 
 The old saying, "Two heads are better than one." 
-Its true.
+True.
 
 ## Credits
 
-:tada: Thanks to all the volunteers who forget.
+:tada: Thanks to all who forget.
 
 ## Supporting
 
