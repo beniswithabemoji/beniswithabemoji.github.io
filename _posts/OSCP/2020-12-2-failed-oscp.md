@@ -2,7 +2,7 @@
 title: Failed Lol
 author: Benis
 date: 2020-12-2
-categories: [OSCP, Tutorial]
+categories: [OSCP,Tutorial]
 tags: [oscp]
 ---
 
