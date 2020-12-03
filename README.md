@@ -2,7 +2,7 @@
 
 Language: English ?
 
-<script src="https://www.hackthebox.eu/badge/90655"></script>
+![Me]("https://www.hackthebox.eu/badge/90655")
 
 [![Automatic build](https://github.com/beniswithabemoji/beniswithabemoji.github.io/workflows/Automatic%20build/badge.svg)
 [![GitHub last commit (branch)](https://img.shields.io/github/last-commit/beniswithabemoji/beniswithabemoji.github.io/master?color=blue&label=benis&logo=yes&logoColor=red&style=plastic)]
