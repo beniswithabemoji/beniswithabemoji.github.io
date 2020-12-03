@@ -84,7 +84,7 @@
 
 
 {% if index_list.size > 0 %}
-  <div id="related-posts" class="mt-4 mb-2 mb-sm-4 pb-2">
+  <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
     <h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>{{ site.data.label.post.relate_posts }}</h3>
     <div class="card-deck mb-4">
     {% for entry in index_list %}
@@ -93,15 +93,13 @@
       <div class="card">
         <a href="{{ post.url | relative_url }}">
           <div class="card-body">
-            <span class="timeago small">
-                {{ post.date | date: site.data.date_format.post }}
-                <i class="unloaded">{{ post.date | date_to_xmlschema }}</i>
-            </span>
+            {% include timeago.html date=post.date class="small" %}
             <h3 class="pt-0 mt-1 mb-3" data-toc-skip>{{ post.title }}</h3>
             <div class="text-muted small">
-              {% assign content = post.content %}
-              {% include no-linenos.html %}
-              <p>{{ content | markdownify | strip_html | truncate: 200 | replace: '&', '&amp;' }}</p>
+              <p>
+                {% include no-linenos.html content=post.content %}
+                {{ content | markdownify | strip_html | truncate: 200 }}
+              </p>
             </div>
           </div>
         </a>

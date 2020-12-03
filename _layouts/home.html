@@ -9,9 +9,8 @@ layout: page
 
 
 {% assign pinned = site.posts | where_exp: "item", "item.pin == true"  %}
-{% assign default = site.posts | where_exp: "item", "item.pin == nil "  %}
+{% assign default = site.posts | where_exp: "item", "item.pin != true"  %}
 {% assign posts = "" | split: "" %}
-
 
 <!-- Get pinned posts -->
 
@@ -29,9 +28,7 @@ layout: page
 
 <!-- Get default posts -->
 
-
 {% assign default_beg = offset | minus: pinned.size %}
-
 
 {% if default_beg < 0 %}
   {% assign default_beg = 0 %}
@@ -49,33 +46,28 @@ layout: page
 
 <div id="post-list">
 
-{% assign posts = site.posts | where:"hide", "false" %}
 {% for post in posts %}
 
   <div class="post-preview">
     <div class="d-flex justify-content-between pr-xl-2">
       <h1><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h1>
-      {% if post.pin %}
+      {% if post.pin == true %}
         <i class="fas fa-thumbtack fa-fw text-muted mt-1 ml-2 mt-xl-2" data-toggle="tooltip" data-placement="left"
         title="Pinned"></i>
       {% endif %}
     </div>
     <div class="post-content">
       <p>
-      {% assign _content = post.content %}
-      {% include no-linenos.html %}
-      {{ _content | markdownify | strip_html | truncate: 200 }}
+        {% include no-linenos.html content=post.content %}
+        {{ content | markdownify | strip_html | truncate: 200 }}
       </p>
     </div>
 
     <div class="post-meta text-muted">
       <!-- posted date -->
       <i class="far fa-clock fa-fw"></i>
-      <span class="timeago" data-toggle="tooltip" data-placement="bottom"
-        title="{{ post.date | date: site.data.date_format.tooltip }}">
-      {{ post.date | date: site.data.date_format.post }}
-      <i class="unloaded">{{ post.date | date_to_xmlschema }}</i>
-      </span>
+      {% include timeago.html date=post.date tooltip=true %}
+
       <!-- page views -->
       {% if site.google_analytics.pv.enabled %}
       <i class="far fa-eye fa-fw"></i>
