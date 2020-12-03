@@ -2,11 +2,10 @@
 
 Language: English ?
 
-![Benis](https://www.hackthebox.eu/badge/90655)
+![Benis](http://www.hackthebox.eu/badge/image/90655)
 
 ![Automatic build](https://github.com/beniswithabemoji/beniswithabemoji.github.io/workflows/Automatic%20build/badge.svg)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/beniswithabemoji/beniswithabemoji.github.io/master?color=blue&label=benis&logo=yes&logoColor=red&style=plastic)
-![996.icu](https://img.shields.io/badge/link-996.icu-%23FF4D5B.svg)](https://996.icu)
 ![Azure DevOps tests (compact)](https://img.shields.io/azure-devops/tests/benis/on-computer/1?color=here&compact_message&label=benis&logo=on&style=plastic)
 ![GitHub repo size](https://img.shields.io/github/repo-size/beniswithabemoji/beniswithabemoji.github.io?color=red&label=yes&style=plastic)
 
