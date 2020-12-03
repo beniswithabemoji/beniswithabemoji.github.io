@@ -9,7 +9,11 @@ Language: English ?
 [![996.icu](https://img.shields.io/badge/link-996.icu-%23FF4D5B.svg)](https://996.icu)
 [![Azure DevOps tests (compact)](https://img.shields.io/azure-devops/tests/benis/on-computer/1?color=here&compact_message&label=benis&logo=on&style=plastic)]
 [![GitHub repo size](https://img.shields.io/github/repo-size/beniswithabemoji/beniswithabemoji.github.io?color=red&label=yes&style=plastic)]
-A minimal, responsive presentation. Designed to record you. [Live Demo »](https://benisonthe.computer)
+
+
+
+A minimal, 
+- responsive. Designed you. [Live »](https://benisonthe.computer)
 
 [![Devices Mockup]()
 
