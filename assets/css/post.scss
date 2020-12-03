@@ -27,30 +27,25 @@ $prompt-newer: "{{ site.data.label.post.button.next }}";
   border-color: var(--btn-border-color);
 }
 
-.post-content {
-  > ol, > ul, > dl {
-    padding-left: 2rem;
-    li+li {
-      margin-top: 0.3rem;
-    }
-  }
-  li {
-    > ol, > ul, > dl { // sub list
-      padding-left: 2rem;
-    }
-    > p {
-      margin: 1rem 0 0.8rem;
-    }
-  }
-  .post-preview-img {
-    margin-top: 0;
-    margin-bottom: 2.5rem;
-    @include align-center;
+.author {
+  @include semi-bold;
+}
+
+.post {
+  img {
+    max-width: 100%;
+    margin-top: .5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
   }
 }
 
 .post-tail-wrapper {
-  margin-top: 6rem;
+  margin-top: 4rem;
   border-bottom: 1px double var(--main-border-color);
   font-size: 0.85rem;
 }
@@ -214,9 +209,6 @@ $prompt-newer: "{{ site.data.label.post.button.next }}";
 
 #post-extend-wrapper {
   min-height: 2rem;
-  #disqus_thread {
-    margin-bottom: 2rem;
-  }
 }
 
 .post-tail-bottom a {
@@ -342,10 +334,47 @@ $prompt-newer: "{{ site.data.label.post.button.next }}";
 
 /* Hide SideBar and TOC */
 @media all and (max-width: 830px) {
+  .post img {
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+
   .post-navigation {
     padding-left: 0;
     padding-right: 0;
     margin-left: -.5rem;
     margin-right: -.5rem;
+  }
+
+}
+
+/*
+  The following resposive design aim to
+  make #post-extend-wrapper margin-right same as pannel's width
+*/
+@media all and (min-width: 1200px) {
+  #post-extend-wrapper {
+    margin-right: 25%;
+  }
+}
+
+@media all and (min-width: 1460px) {
+  #post-extend-wrapper {
+    margin-right: 300px;
+  }
+}
+
+@media all and (min-width: 1650px) {
+  #post-extend-wrapper {
+    margin-right: calc((100% - 1150px) / 10 + 300px);
+  }
+}
+
+@media all and (min-width: 1700px) {
+  #post-extend-wrapper {
+    margin-right: calc((100% - 1150px) / 8 + 300px);
   }
 }

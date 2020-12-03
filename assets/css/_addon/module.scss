@@ -7,99 +7,96 @@
 * MIT Licensed
 */
 
-
 /*---------- scss placeholder ---------*/
 
 %tag-hover {
     background: var(--tag-hover);
     transition: background 0.35s ease-in-out;
-}
-
-%table-cell {
+  }
+  
+  %table-cell {
     padding: .35rem .8rem;
     font-size: 95%;
-}
-
-%link-hover {
+  }
+  
+  %link-hover {
     color: #d2603a!important;
     border-bottom: 1px solid #d2603a;
     text-decoration: none;
-}
-
-%link-color {
+  }
+  
+  %link-color {
     color: var(--link-color);
-}
-
-%link-underline {
+  }
+  
+  %link-underline {
     border-bottom: 1px solid var(--link-underline-color);
-}
-
-%no-bottom-border {
+  }
+  
+  %no-bottom-border {
     border-bottom: none;
-}
-
-%heading {
+  }
+  
+  %heading {
     font-weight: 400;
     font-family: 'Lato', 'Microsoft Yahei', sans-serif;
-}
-
-%section {
+  }
+  
+  %section {
     #post-wrapper & {
-        line-height: 1.2;
-        margin-bottom: 1rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
     }
-}
-
-%anchor {
+  }
+  
+  %anchor {
     padding-top: 3.5rem;
     margin-top: -2.5rem;
-}
-
-
-/*---------- scss mixin ---------*/
-
-@mixin no-text-decoration {
+  }
+  
+  /*---------- scss mixin ---------*/
+  
+  @mixin no-text-decoration {
     text-decoration: none;
-}
-
-
-/* @mixin sidebar-links($color: rgba(255, 255, 255, 0.5)) { */
-
-@mixin sidebar-links($color: black) {
+  }
+  
+  /* @mixin sidebar-links($color: rgba(255, 255, 255, 0.5)) { */
+  @mixin sidebar-links($color: black) {
     color: $color;
     transition: color 0.35s ease-in-out;
     user-select: none;
     margin: 0 .25rem;
-}
-
-@mixin icon-round($diameter) {
+  }
+  
+  @mixin icon-round($diameter) {
     border: 1px solid;
     border-radius: 50%;
     width: $diameter;
     height: $diameter;
-}
-
-@mixin ml-mr($value) {
+  }
+  
+  @mixin ml-mr($value) {
     margin-left: $value;
     margin-right: $value;
-}
-
-@mixin pl-pr($val) {
+  }
+  
+  @mixin pl-pr($val) {
     padding-left: $val;
     padding-right: $val;
-}
-
-@mixin input-placeholder {
+  }
+  
+  @mixin input-placeholder {
     opacity: 0.6;
-}
-
-@mixin semi-bold {
+  }
+  
+  @mixin semi-bold {
     font-weight: 600;
-}
-
-@mixin label($font-size: 1rem, $font-weight: 600, $color: var(--label-color)) {
+  }
+  
+  @mixin label($font-size: 1rem, $font-weight: 600, $color: var(--label-color)) {
     color: $color;
     font-size: $font-size;
     font-weight: $font-weight;
     font-family: 'Roboto Condensed', 'Microsoft Yahei', sans-serif;
-}
+  }
+  
