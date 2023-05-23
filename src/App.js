@@ -1,9 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import React from "react";
+import ReactDOM from "react-dom";
+import "./App.css";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
+      <React.StrictMode>
+        <HashRouter>
+          <Routes>
+            <Route path="/" element={<App />} />
+            {/* <Route path="/about" element={<About />} /> */}
+          </Routes>
+        </HashRouter>
+      </React.StrictMode>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
