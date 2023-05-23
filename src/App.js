@@ -1,23 +1,15 @@
 import React from "react";
 
-import "./App.css";
-import { HashRouter, Routes, Route } from "react-router-dom";
 import Canvas from "./Components/Canvas";
-import AboutMe from "./Components/AboutMe";
+import Footer from "./Components/Footer";
+import Header from "./Components/Header";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello</h1>
-      <React.StrictMode>
-        <HashRouter>
-          <Routes>
-            <Route path="/" element={<App />} />
-            <Route path="/about" element={<AboutMe />} />
-          </Routes>
-        </HashRouter>
-      </React.StrictMode>
-      <Canvas></Canvas>
+    <div className='bg-white dark:bg-gray-800'>
+      <Header />
+      <Canvas />
+      <Footer />
     </div>
   );
 }

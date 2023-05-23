@@ -1,8 +1,8 @@
 function Canvas() {
   return (
-    <>
-      <canvas className="main-canvas"></canvas>
-    </>
+    <div className='p-10'>
+      <canvas className='main-canvas w-full border border-sky-500'></canvas>
+    </div>
   );
 }
 
