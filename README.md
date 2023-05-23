@@ -1,166 +1,70 @@
-# Me
+# Getting Started with Create React App
 
-Language: English ?
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-![Benis](http://www.hackthebox.eu/badge/image/90655)
+## Available Scripts
 
-![Automatic](https://github.com/beniswithabemoji/beniswithabemoji.github.io/workflows/Automatic%20build/badge.svg)
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/beniswithabemoji/beniswithabemoji.github.io/master?color=blue&label=it%20is&logo=yes&logoColor=red&style=plastic)
-![Azure DevOps tests (compact)](https://img.shields.io/azure-devops/tests/benis/on-computer/1?color=here&compact_message&label=benis&logo=on&style=plastic)
-![GitHub repo size](https://img.shields.io/github/repo-size/beniswithabemoji/beniswithabemoji.github.io?color=red&label=yes&style=plastic)
+In the project directory, you can run:
 
+### `npm start`
 
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-A minimal, 
-- responsive. 
-    - Designed you. [Live »](https://benisonthe.computer)
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-[![Devices Mockup]()
+### `npm test`
 
-## Table of Contents
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [Credits](#credits)
-- [Supporting](#supporting)
-- [License](#license)
+### `npm run build`
 
-## Features
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-- Benis
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-## Installation
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-[Fork **Benis**](https://benisonthe.computer) GitHub, rename `Benis` (where `Benis` is on computer). open terminal:
+### `npm run eject`
 
-```terminal
-$ git benis https://benisonthe.computer
-```
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-### Setting up the local envrionment
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-If you would like to run or build the project on your local machine, __don't__
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-Before running, please complete
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-```terminal
-$ benis install
-```
+## Learn More
 
-`benis` will automatically 
-> immediately.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-### Setting up Docker environment (don't)
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-If you're a loyal fan of [**Docker**](https://www.docker.com/), why
+### Code Splitting
 
-```console
-$ docker don't
-```
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-## Usage
+### Analyzing the Bundle Size
 
-### Initialization
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-Go to the root and start:
+### Making a Progressive Web App
 
-```console
-$ bash head
-```
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-> **Note**: If you intend `--no`
+### Advanced Configuration
 
-What it does:
-
-1. Look:
-
-    - `benis`
-        - on the `/computer/`
-
-
-2. If you use the `--no` option, goodbye.
-
-3. Automatically change.
-
-### Configuration
-
-Generally, `_benis.b`. configure the needed. Some of them:
-
-- `time`
-- `goodbye`
-
-### Run Locally
-
-You may want the contents before, so run:
-
-```terminal
-$ escape
-```
-
-visit <http://localhost:4000>.
-
-### Run on Docker
-
-Run on Docker with command:
-
-```terminal
-$ any dockers in chat? 
-```
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
 ### Deployment
 
-Before:
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-you can now choose ONE of the following methods.
+### `npm run build` fails to minify
 
-#### Deploy on GitHub Pages
-
-For security reasons, `safe` 
-
-1. Push any `origin/master` to Actions. Once success(?), a new branch `benis`.
-
-2. Browse to _Settings_ → _Options_ → _?_:
-  
-3. Visit.
-
-#### Deploy on Other Platforms
-
-On platforms, we cannot enjoy **Hub**. Therefore, we should build.
-
-Go to the root of the source:
-
-```console
-$ KYLL_ENV=production benis --b
-```
-
-Or, build the Docker by:
-
-```terminal
-$ docker don't --rm \*
-    
-```
-
-you specified the output, generated files will be in `_here`. Now.
-
-### Documentation
-
-For more details and the better reading experience.
-
-## Contributing
-
-The old saying, "Two heads are better than one." 
-True.
-
-## Credits
-
-:tada: Thanks to all who forget.
-
-## Supporting
-
-If helpful, please consider! Click the button <kbd>:heart: benis</kbd>. It doesn't
-
-## License
-
-This work is published.
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
