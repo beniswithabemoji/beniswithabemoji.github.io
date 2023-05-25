@@ -3,15 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-three/drei": "^9.69.2",
+    "@react-three/fiber": "^8.13.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "flowbite": "^1.6.5",
     "flowbite-react": "^0.4.4",
+    "font-awesome": "^4.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.2",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
+    "three": "^0.152.2",
     "web-vitals": "^2.1.4"
   },
   "homepage": "https://beniswithabemoji.github.io/",
@@ -21,7 +25,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build && copy CNAME build\\CNAME",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "watch": "webpack --watch"
   },
   "eslintConfig": {
     "extends": [
@@ -42,9 +47,16 @@
     ]
   },
   "devDependencies": {
+    "@types/three": "^0.152.0",
     "autoprefixer": "^10.4.14",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^6.7.4",
+    "eslint": "^8.41.0",
+    "eslint-config-defaults": "^9.0.0",
+    "eslint-plugin-react": "^7.32.2",
     "gh-pages": "^5.0.0",
     "postcss": "^8.4.23",
-    "tailwindcss": "^3.3.2"
+    "tailwindcss": "^3.3.2",
+    "webpack-cli": "^5.1.1"
   }
 }
