@@ -4,7 +4,7 @@ import React, {useCallback, useEffect, useMemo, useRef} from "react";
 import {Color, MathUtils, Vector2} from "three";
 import { TextureLoader } from 'three/src/loaders/TextureLoader'
 
-import {fragmentShader, fragmentShader2, fragOld} from "../WebGL/Fragment";
+import {fragmentShader, fragmentShader2, fragOld, testFrag} from "../WebGL/Fragment";
 import vertexShader from "../WebGL/Vertex";
 import cat from "../assets/cat.jpg"
 
@@ -71,7 +71,7 @@ const Flag = () => {
                 map={colorMap}
             />
             <shaderMaterial
-                fragmentShader={fragmentShader2}
+                fragmentShader={testFrag}
                 vertexShader={vertexShader}
                 uniforms={uniforms}
                 wireframe={false}
