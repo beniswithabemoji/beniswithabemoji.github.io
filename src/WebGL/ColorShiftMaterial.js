@@ -1,4 +1,27 @@
+﻿import * as THREE from "three";
+import { useRef } from "react";
+import { extend, Canvas, useFrame } from "@react-three/fiber";
+import { shaderMaterial } from "@react-three/drei";
+import resolveLygia from "https://lygia.xyz/resolve.esm.js";
+import { Vector2 } from "three";
 
+const ColorShiftMaterial = shaderMaterial(
+  {
+    u_time: 0.0,
+    u_resolution: new THREE.Vector2(600, 600),
+    u_mouse: new Vector2(0, 0),
+  },
+  // vertex shader
+  resolveLygia(`
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  `),
+  // fragment shader
+  resolveLygia(`
+    
 #ifdef GL_ES
 precision mediump float;
 #endif
@@ -7,11 +30,11 @@ uniform vec2 u_resolution;
 uniform vec2 u_mouse;
 uniform float u_time;
 
-#include "../../node_modules/lygia/generative/fbm.glsl"
-#include "../../node_modules/lygia/distort/barrel.glsl"
-#include "../../node_modules/lygia/draw/rect.glsl"
-#include "../../node_modules/lygia/color/dither.glsl"
-#include "../../node_modules/lygia/math/mirror.glsl"
+#include "lygia/generative/fbm.glsl"
+#include "lygia/distort/barrel.glsl"
+#include "lygia/draw/rect.glsl"
+#include "lygia/color/dither.glsl"
+#include "lygia/math/mirror.glsl"
 
 vec3 colorA=vec3(.149,.141,.912);
 vec3 colorB=vec3(1.,.833,.224);
@@ -37,12 +60,7 @@ vec4 dith(){
     float size=.1;
     vec2 pixel=size/u_resolution.xy;
     vec2 st=gl_FragCoord.xy*pixel;
-    //vec2 st=gl_FragCoord.xy;
-    //vec2 uv=gl_FragCoord.xy/u_resolution.xy;
-    
-    //color.rgb=sampleDither(u_tex0,uv,u_resolution*1.);
-    
-    // // compress
+
     vec3 black=vec3(0,0,0);
     const float c0=32.;
     vec2 its=mix(vec2(0.),vec2(.1)/c0,st);
@@ -77,3 +95,10 @@ void main(){
     
     gl_FragColor=color;
 }
+
+  `)
+);
+
+extend({ ColorShiftMaterial });
+
+export { ColorShiftMaterial };

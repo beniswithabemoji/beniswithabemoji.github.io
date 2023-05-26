@@ -8,13 +8,20 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "babel-plugin-glsl": "^1.0.0",
+    "dat.gui": "^0.7.9",
     "flowbite": "^1.6.5",
     "flowbite-react": "^0.4.4",
     "font-awesome": "^4.7.0",
+    "glsl-canvas-js": "^0.2.9",
+    "glsl-noise": "^0.0.0",
+    "glslify": "^7.1.1",
+    "lygia": "^0.0.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.2",
     "react-scripts": "^5.0.1",
+    "resolve-lygia": "^1.0.4",
     "three": "^0.152.2",
     "web-vitals": "^2.1.4"
   },
@@ -57,6 +64,7 @@
     "gh-pages": "^5.0.0",
     "postcss": "^8.4.23",
     "tailwindcss": "^3.3.2",
-    "webpack-cli": "^5.1.1"
+    "webpack-cli": "^5.1.1",
+    "webpack-glsl-loader": "^1.0.1"
   }
 }

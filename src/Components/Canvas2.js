@@ -7,6 +7,7 @@ import { TextureLoader } from 'three/src/loaders/TextureLoader'
 import { fragmentShader, fragmentShader2, fragNoise, fragOld, testFrag } from "../WebGL/Fragment";
 import vertexShader from "../WebGL/Vertex";
 import cat from "../assets/cat.jpg"
+import {ColorShiftMaterial, Sketch} from "../WebGL/ColorShiftMaterial";
 
 const Flag = () => {
     // This reference will give us direct access to the mesh
@@ -71,7 +72,7 @@ const Flag = () => {
                 map={colorMap}
             />
             <shaderMaterial
-                fragmentShader={testFrag}
+                fragmentShader={fragOld}
                 vertexShader={vertexShader}
                 uniforms={uniforms}
                 wireframe={false}
@@ -99,14 +100,14 @@ const Sphere = () => {
             iTime: {
                 value: 0.0,
             },
-            iResolution: {
+            u_resolution: {
                 value: new Vector2(window.innerWidth, window.innerHeight)
             },
-            iMouse: {
+            u_mouse: {
                 value: new Vector2(0, 0)
             },
-            u_colorA: { value: new Color("#9FBAF9") },
-            u_colorB: { value: new Color("#FEB3D9") },
+            colorStart: { value: new Color("rgba(159,186,249,0.2)") },
+            colorEnd: { value: new Color("rgba(0,0,0,0.2)") },
             u_colorChannel: {
                 value: colorMap
             },
@@ -122,11 +123,14 @@ const Sphere = () => {
             window.removeEventListener("mousemove", updateMousePosition, false);
         };
     }, [updateMousePosition]);
-    useFrame((state) => {
+    useFrame((state, delta) => {
         const { clock } = state;
 
-        mesh.current.material.uniforms.iTime.value = clock.getElapsedTime();
-        mesh.current.material.uniforms.iMouse.value = new Vector2(
+        
+        mesh.current.rotation.x += 0.2 * delta;
+        mesh.current.material.uniforms.u_time.value = clock.getElapsedTime();
+        //mesh.current.material.uniforms.iTime.value = clock.getElapsedTime();
+        mesh.current.material.uniforms.u_mouse.value = new Vector2(
             mousePosition.current.x,
             mousePosition.current.y
         );
@@ -136,13 +140,14 @@ const Sphere = () => {
     return (
         <mesh ref={mesh} position={[-2, 0, 0]} >
             <sphereGeometry args={[3, 20, 20]} />
-            <meshStandardMaterial />
-            <shaderMaterial
-                fragmentShader={fragNoise}
-                vertexShader={vertexShader}
-                uniforms={uniforms}
-                wireframe={true}
-            />
+            <colorShiftMaterial />
+            {/*<meshStandardMaterial />*/}
+            {/*<shaderMaterial*/}
+            {/*    fragmentShader={fragNoise}*/}
+            {/*    vertexShader={vertexShader}*/}
+            {/*    uniforms={uniforms}*/}
+            {/*    wireframe={false}*/}
+            {/*/>*/}
         </mesh>
     );
 };
@@ -155,12 +160,12 @@ const Sphere = () => {
 
 export default function CanvasNew() {
     return (
-        <div className='main-canvas z-10 absolute w-full h-full'>
+        <div className='main-canvas -z-10 absolute w-full h-full'>
             <Canvas camera={{ position: [0.0, 3.0, 1.0] }}>
                 {/* <pointLight position={[15, 15, 15]} /> */}
-                {/* <Flag /> */}
                 <Sphere />
-                <OrbitControls />
+                {/*<Sketch/>*/}
+                {/*<OrbitControls />*/}
             </Canvas>
         </div>
     );

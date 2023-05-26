@@ -1,3 +1,4 @@
+
 const fragmentShader = `
 uniform vec2 iMouse;
 uniform float iTime;
@@ -145,9 +146,11 @@ vec3 mod289(vec3 x) {
     vec2 mod289(vec2 x) 
     {
           return x - floor(x * (1.0 / 289.0)) * 289.0;
-    }vec3 permute(vec3 x) {
+    }
+    vec3 permute(vec3 x) {
           return mod289(((x * 34.0) + 10.0) * x);
-    }float snoise(vec2 v) {
+    }
+    float snoise(vec2 v) {
           const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
           vec2 i = floor(v + dot(v, C.yy));
           vec2 x0 = v - i + dot(i, C.xx);  vec2 i1;
@@ -213,200 +216,181 @@ uniform vec2 iResolution;
 uniform vec2 iMouse;
 uniform float iTime;
 
-vec3 palette(float d){
-    return mix(vec3(0.2,0.7,0.9),vec3(1.,0.,1.),d);
-}
+uniform float time;
+uniform vec3 colorStart;
+uniform vec3 colorEnd;
+varying vec2 vUv;
 
-vec2 rotate(vec2 p,float a){
-    float c = cos(a);
-    float s = sin(a);
-    return p*mat2(c,s,-s,c);
-}
-
-float map(vec3 p){
-    for( int i = 0; i<8; ++i){
-        float t = iTime*0.2;
-        p.xz =rotate(p.xz,t);
-        p.xy =rotate(p.xy,t*1.89);
-        p.xz = abs(p.xz);
-        p.xz-=.5;
-    }
-    return dot(sign(p),p)/5.;
-}
-
-vec4 rm (vec3 ro, vec3 rd){
-    float t = 0.;
-    vec3 col = vec3(0.);
-    float d;
-    for(float i =0.; i<64.; i++){
-        vec3 p = ro + rd*t;
-        d = map(p)*.5;
-        if(d<0.02){
-            break;
-        }
-        if(d>100.){
-            break;
-        }
-        //col+=vec3(0.6,0.8,0.8)/(400.*(d));
-        col+=palette(length(p)*.1)/(400.*(d));
-        t+=d;
-    }
-    return vec4(col,1./(d*100.));
-}
-void mainImage( out vec4 fragColor, in vec2 fragCoord )
+vec3 mod289(vec3 x)
 {
-    vec2 uv = (fragCoord-(iResolution.xy/2.))/iResolution.x;
-    vec3 ro = vec3(0.,0.,-50.);
-    ro.xz = rotate(ro.xz,iTime);
-    vec3 cf = normalize(-ro);
-    vec3 cs = normalize(cross(cf,vec3(0.,1.,0.)));
-    vec3 cu = normalize(cross(cf,cs));
-
-    vec3 uuv = ro+cf*3. + uv.x*cs + uv.y*cu;
-
-    vec3 rd = normalize(uuv-ro);
-
-    vec4 col = rm(ro,rd);
-
-
-    fragColor = col;
+    return x-floor(x*(1./289.))*289.;
 }
 
-/** SHADERDATA
+vec4 mod289(vec4 x)
 {
-"title": "fractal pyramid",
-"description": "",
-"model": "car"
+    return x-floor(x*(1./289.))*289.;
 }
-*/
+
+vec4 permute(vec4 x)
+{
+    return mod289(((x*34.)+1.)*x);
+}
+
+vec4 taylorInvSqrt(vec4 r)
+{
+    return 1.79284291400159-.85373472095314*r;
+}
+
+vec3 fade(vec3 t){
+    return t*t*t*(t*(t*6.-15.)+10.);
+}
+
+// Classic Perlin noise
+float cnoise3(vec3 P)
+{
+    vec3 Pi0=floor(P);// Integer part for indexing
+    vec3 Pi1=Pi0+vec3(1.);// Integer part + 1
+    Pi0=mod289(Pi0);
+    Pi1=mod289(Pi1);
+    vec3 Pf0=fract(P);// Fractional part for interpolation
+    vec3 Pf1=Pf0-vec3(1.);// Fractional part - 1.0
+    vec4 ix=vec4(Pi0.x,Pi1.x,Pi0.x,Pi1.x);
+    vec4 iy=vec4(Pi0.yy,Pi1.yy);
+    vec4 iz0=Pi0.zzzz;
+    vec4 iz1=Pi1.zzzz;
+    
+    vec4 ixy=permute(permute(ix)+iy);
+    vec4 ixy0=permute(ixy+iz0);
+    vec4 ixy1=permute(ixy+iz1);
+    
+    vec4 gx0=ixy0*(1./7.);
+    vec4 gy0=fract(floor(gx0)*(1./7.))-.5;
+    gx0=fract(gx0);
+    vec4 gz0=vec4(.5)-abs(gx0)-abs(gy0);
+    vec4 sz0=step(gz0,vec4(0.));
+    gx0-=sz0*(step(0.,gx0)-.5);
+    gy0-=sz0*(step(0.,gy0)-.5);
+    
+    vec4 gx1=ixy1*(1./7.);
+    vec4 gy1=fract(floor(gx1)*(1./7.))-.5;
+    gx1=fract(gx1);
+    vec4 gz1=vec4(.5)-abs(gx1)-abs(gy1);
+    vec4 sz1=step(gz1,vec4(0.));
+    gx1-=sz1*(step(0.,gx1)-.5);
+    gy1-=sz1*(step(0.,gy1)-.5);
+    
+    vec3 g000=vec3(gx0.x,gy0.x,gz0.x);
+    vec3 g100=vec3(gx0.y,gy0.y,gz0.y);
+    vec3 g010=vec3(gx0.z,gy0.z,gz0.z);
+    vec3 g110=vec3(gx0.w,gy0.w,gz0.w);
+    vec3 g001=vec3(gx1.x,gy1.x,gz1.x);
+    vec3 g101=vec3(gx1.y,gy1.y,gz1.y);
+    vec3 g011=vec3(gx1.z,gy1.z,gz1.z);
+    vec3 g111=vec3(gx1.w,gy1.w,gz1.w);
+    
+    vec4 norm0=taylorInvSqrt(vec4(dot(g000,g000),dot(g010,g010),dot(g100,g100),dot(g110,g110)));
+    g000*=norm0.x;
+    g010*=norm0.y;
+    g100*=norm0.z;
+    g110*=norm0.w;
+    vec4 norm1=taylorInvSqrt(vec4(dot(g001,g001),dot(g011,g011),dot(g101,g101),dot(g111,g111)));
+    g001*=norm1.x;
+    g011*=norm1.y;
+    g101*=norm1.z;
+    g111*=norm1.w;
+    
+    float n000=dot(g000,Pf0);
+    float n100=dot(g100,vec3(Pf1.x,Pf0.yz));
+    float n010=dot(g010,vec3(Pf0.x,Pf1.y,Pf0.z));
+    float n110=dot(g110,vec3(Pf1.xy,Pf0.z));
+    float n001=dot(g001,vec3(Pf0.xy,Pf1.z));
+    float n101=dot(g101,vec3(Pf1.x,Pf0.y,Pf1.z));
+    float n011=dot(g011,vec3(Pf0.x,Pf1.yz));
+    float n111=dot(g111,Pf1);
+    
+    vec3 fade_xyz=fade(Pf0);
+    vec4 n_z=mix(vec4(n000,n100,n010,n110),vec4(n001,n101,n011,n111),fade_xyz.z);
+    vec2 n_yz=mix(n_z.xy,n_z.zw,fade_xyz.y);
+    float n_xyz=mix(n_yz.x,n_yz.y,fade_xyz.x);
+    return 2.2*n_xyz;
+}
+
 void main(){
-    mainImage(gl_FragColor,gl_FragCoord.xy);
+    vec2 displacedUv=vUv+cnoise3(vec3(vUv*1.,iTime*.05));
+    displacedUv*=10.;
+    float strength=cnoise3(vec3(displacedUv*10.,iTime*.2));
+    float outerGlow=distance(vUv,vec2(.8))*5.-.5;
+    strength+=outerGlow;
+    strength+=step(-.2,strength)*.6;
+    strength=clamp(strength,0.,1.);
+    vec3 color=mix(colorStart,colorEnd,strength);
+    vec4 outPutColor=vec4(mix(colorStart,colorEnd,vec3(0,0,0),1.))
+     gl_FragColor=outPutColor;
 }
 `
 const fragNoise = `
+// Author: @patriciogv
+// Title: Simple Voronoi
 
-precision highp float;
+#ifdef GL_ES
+precision mediump float;
+#endif
 
-uniform vec2 iResolution;
-uniform vec2 iMouse;
-uniform float iTime;
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+uniform float u_time;
 
-vec3 hash33(vec3 p3)
-{
-	p3 = fract(p3 * vec3(.1031,.11369,.13787));
-    p3 += dot(p3, p3.yxz+19.19);
-    return -1.0 + 2.0 * fract(vec3(p3.x+p3.y, p3.x+p3.z, p3.y+p3.z)*p3.zyx);
-}
-float snoise3(vec3 p)
-{
-    const float K1 = 0.333333333;
-    const float K2 = 0.166666667;
-    
-    vec3 i = floor(p + (p.x + p.y + p.z) * K1);
-    vec3 d0 = p - (i - (i.x + i.y + i.z) * K2);
-    
-    vec3 e = step(vec3(0.0), d0 - d0.yzx);
-	vec3 i1 = e * (1.0 - e.zxy);
-	vec3 i2 = 1.0 - e.zxy * (1.0 - e);
-    
-    vec3 d1 = d0 - (i1 - K2);
-    vec3 d2 = d0 - (i2 - K1);
-    vec3 d3 = d0 - 0.5;
-    
-    vec4 h = max(0.6 - vec4(dot(d0, d0), dot(d1, d1), dot(d2, d2), dot(d3, d3)), 0.0);
-    vec4 n = h * h * h * h * vec4(dot(d0, hash33(i)), dot(d1, hash33(i + i1)), dot(d2, hash33(i + i2)), dot(d3, hash33(i + 1.0)));
-    
-    return dot(vec4(31.316), n);
+vec2 random2( vec2 p ) {
+    return fract(sin(vec2(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3))))*43758.5453);
 }
 
-vec4 extractAlpha(vec3 colorIn)
-{
-    vec4 colorOut;
-    float maxValue = min(max(max(colorIn.r, colorIn.g), colorIn.b), 1.0);
-    if (maxValue > 1e-5)
-    {
-        colorOut.rgb = colorIn.rgb * (1.0 / maxValue);
-        colorOut.a = maxValue;
+void main() {
+    vec2 st = gl_FragCoord.xy/u_resolution.xy;
+    st.x *= u_resolution.x/u_resolution.y;
+    vec3 color = vec3(.0);
+
+    // Scale
+    st *= 4.;
+
+    // Tile the space
+    vec2 i_st = floor(st);
+    vec2 f_st = fract(st);
+
+    float m_dist = 15.;  // minimum distance
+    vec2 m_point;        // minimum point
+
+    for (int j=-1; j<=1; j++ ) {
+        for (int i=-1; i<=1; i++ ) {
+            vec2 neighbor = vec2(float(i),float(j));
+            vec2 point = random2(i_st + neighbor);
+            point = 0.5 + 0.5*sin(u_time + 6.2831*point);
+            vec2 diff = neighbor + point - f_st;
+            float dist = length(diff);
+
+            if( dist < m_dist ) {
+                m_dist = dist;
+                m_point = point;
+            }
+        }
     }
-    else
-    {
-        colorOut = vec4(0.0);
-    }
-    return colorOut;
+
+    // Assign a color using the closest point position
+    color += dot(m_point,vec2(.01,.02));
+
+    // Add distance field to closest point center
+    // color.g = m_dist;
+
+    // Show isolines
+    //color -= abs(sin(40.0*m_dist))*0.07;
+
+    // Draw cell center
+    //color += 1.-step(.04, m_dist);
+
+    // Draw grid
+    //color.r += step(.98, f_st.x) + step(.98, f_st.y);
+
+    gl_FragColor = vec4(color,0.1);
 }
 
-#define BG_COLOR (vec3(sin(iTime)*0.5+0.5) * 0.0 + vec3(0.0))
-#define time iTime
-const vec3 color1 = vec3(0.611765, 0.262745, 0.996078);
-const vec3 color2 = vec3(0.298039, 0.760784, 0.913725);
-const vec3 color3 = vec3(0.062745, 0.078431, 0.600000);
-const float innerRadius = 0.6;
-const float noiseScale = 0.65;
-
-float light1(float intensity, float attenuation, float dist)
-{
-    return intensity / (1.0 + dist * attenuation);
-}
-float light2(float intensity, float attenuation, float dist)
-{
-    return intensity / (1.0 + dist * dist * attenuation);
-}
-
-void draw( out vec4 _FragColor, in vec2 vUv )
-{
-    vec2 uv = vUv;
-    float ang = atan(uv.y, uv.x);
-    float len = length(uv);
-    float v0, v1, v2, v3, cl;
-    float r0, d0, n0;
-    float r, d;
-    
-    // ring
-    n0 = snoise3( vec3(uv * noiseScale, time * 0.5) ) * 0.5 + 0.5;
-    r0 = mix(mix(innerRadius, 1.0, 0.4), mix(innerRadius, 1.0, 0.6), n0);
-    d0 = distance(uv, r0 / len * uv);
-    v0 = light1(1.0, 10.0, d0);
-    v0 *= smoothstep(r0 * 1.05, r0, len);
-    cl = cos(ang + time * 2.0) * 0.5 + 0.5;
-    
-    // high light
-    float a = time * -1.0;
-    vec2 pos = vec2(cos(a), sin(a)) * r0;
-    d = distance(uv, pos);
-    v1 = light2(1.5, 5.0, d);
-    v1 *= light1(1.0, 50.0 , d0);
-    
-    // back decay
-    v2 = smoothstep(1.0, mix(innerRadius, 1.0, n0 * 0.5), len);
-    
-    // hole
-    v3 = smoothstep(innerRadius, mix(innerRadius, 1.0, 0.5), len);
-    
-    // color
-    vec3 c = mix(color1, color2, cl);
-    vec3 col = mix(color1, color2, cl);
-    col = mix(color3, col, v0);
-    col = (col + v1) * v2 * v3;
-    col.rgb = clamp(col.rgb, 0.0, 1.0);
-    
-    //gl_FragColor = extractAlpha(col);
-    _FragColor = extractAlpha(col);
-}
-
-void mainImage( out vec4 fragColor, in vec2 fragCoord )
-{
-    vec2 uv = (fragCoord*1.5-iResolution.xy)/iResolution.y;
-    
-    vec4 col;
-    draw(col, uv);
-
-    vec3 bg = BG_COLOR;
-
-    fragColor.rgb = mix(bg, col.rgb, col.a); //normal blend
-}
-
-void main(){
-    mainImage(gl_FragColor,gl_FragCoord.xy);
-}
 `
 export {fragmentShader, fragOld, fragmentShader2, testFrag, fragNoise};
