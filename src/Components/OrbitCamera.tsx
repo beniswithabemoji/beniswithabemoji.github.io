@@ -3,7 +3,7 @@ import {useLayoutEffect, useRef} from "react";
 import * as THREE from "three";
 
 export default function OrbitCamera() {
-    const camera = useRef<THREE.OrthographicCamera>(null);
+    const camera = useRef<THREE.PerspectiveCamera>(null);
     const set = useThree((three) => three.set);
     const prevCamera = useThree((three) => three.camera);
 

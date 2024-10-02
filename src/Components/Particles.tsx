@@ -46,7 +46,9 @@ export default function Particles({count,darkMix}: { count: number,darkMix: numb
     }), [])
     useFrame((state) => {
         const {clock} = state;
+        // @ts-expect-error who cares
         points.current.material.uniforms.u_time.value = clock.elapsedTime * .5;
+        // @ts-expect-error who cares
         points.current.material.uniforms.u_darkMix.value = darkMix;
 
     });

@@ -22,8 +22,11 @@ export default function PlaneVoronoi({darkMix}: { darkMix: number }) {
 
     useFrame((state, delta) => {
         const {clock} = state;
+        // @ts-expect-error who cares
         mesh.current.material.uniforms.u_time.value = 0.4 * clock.getElapsedTime();
+        // @ts-expect-error who cares
         mesh.current.rotateZ(delta * .06)
+        // @ts-expect-error who cares
         mesh.current.material.uniforms.u_darkMix.value = darkMix;
     });
 
